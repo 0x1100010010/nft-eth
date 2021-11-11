@@ -1,0 +1,9 @@
+{
+  "name": "nft-eth",
+  "version": "0.0.1",
+  "description": "NFT-Test",
+  "main": "index.js",
+  "repository": "git@github.com:bashforger/nft-eth.git",
+  "author": "bashforger <bash.forger@gmail.com>",
+  "license": "MIT"
+}
