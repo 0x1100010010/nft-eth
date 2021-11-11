@@ -4,8 +4,7 @@ const { createAlchemyWeb3 } = require("@alch/alchemy-web3")
 dotenv.config();
 const web3 = createAlchemyWeb3(process.env.API_URL)
 const contract = require("../artifacts/contracts/NFT.sol/NFT.json") // ABI
-const contractAddress = "0xe62af8d35e856ef360cab9bcfea7b4c15f8f0666" //Deployed Contract Address
-const nftContract = new web3.eth.Contract(contract.abi, contractAddress)
+const nftContract = new web3.eth.Contract(contract.abi, process.env.CONTRACT_ADDRESS)
 
 const safeMint = async (tokenURI: String) => {
     const nonce = await web3.eth.getTransactionCount(process.env.PUBLIC_KEY, 'latest'); //get latest nonce
@@ -13,7 +12,7 @@ const safeMint = async (tokenURI: String) => {
     //the transaction
     const tx = {
         'from': process.env.PUBLIC_KEY,
-        'to': contractAddress,
+        'to': process.env.CONTRACT_ADDRESS,
         'nonce': nonce,
         'gas': 500000,
         'data': nftContract.methods.safeMint(process.env.PUBLIC_KEY, tokenURI).encodeABI()
@@ -41,4 +40,4 @@ const safeMint = async (tokenURI: String) => {
         })
 }
 
-safeMint("https://gateway.pinata.cloud/ipfs/QmYueiuRNmL4MiA2GwtVMm6ZagknXnSpQnB3z2gWbz36hP")
+safeMint("https://gateway.pinata.cloud/ipfs/Qmd8bCVnTMemgzS8kqSFnLsytB7NXTpiveSobdkEcc83Lo")
